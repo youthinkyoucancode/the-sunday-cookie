@@ -63,11 +63,11 @@
     scrollbar-width: none;       /* Firefox */
     -ms-overflow-style: none;    /* IE / Edge legacy */
   }
-  /* WebKit / Chrome / Safari — hide default scrollbar */
-  ::-webkit-scrollbar {
+  /* WebKit / Chrome / Safari — hide vertical scrollbar only on the page itself */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
     width: 0;
     height: 0;
-    display: none;
   }
   html, body {
     width: 100%;
