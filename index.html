@@ -43,7 +43,22 @@
     line-height: 1.6;
     overflow-x: hidden;
     font-weight: 400;
+    position: relative;
   }
+  /* Soft warm background blooms — fill the empty side margins on wide displays */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 900px 700px at 0% 15%, rgba(232, 165, 168, 0.10), transparent 55%),
+      radial-gradient(ellipse 850px 650px at 100% 35%, rgba(213, 229, 220, 0.10), transparent 55%),
+      radial-gradient(ellipse 800px 600px at 5% 75%, rgba(245, 220, 200, 0.10), transparent 55%),
+      radial-gradient(ellipse 700px 550px at 100% 95%, rgba(232, 222, 236, 0.10), transparent 55%);
+  }
+  body > * { position: relative; z-index: 1; }
   ::selection { background: var(--pink-deep); color: var(--white); }
   img { display: block; max-width: 100%; height: auto; }
 
@@ -418,7 +433,7 @@
     grid-template-columns: 1.65fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 18px;
-    max-width: 1100px;
+    max-width: 1280px;
     margin: 0 auto;
     min-height: 640px;
   }
@@ -786,7 +801,7 @@
 
   /* === FEATURES === */
   .features {
-    max-width: 1100px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 50px 32px 100px;
   }
