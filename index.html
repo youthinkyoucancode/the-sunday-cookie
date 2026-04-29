@@ -297,6 +297,51 @@
     background: var(--ink); color: var(--white);
   }
 
+  /* === ORBITING SUN-COOKIE BUTTON === */
+  .btn-with-orbit {
+    position: relative;
+    isolation: isolate;
+  }
+  .orbit-cookie {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 38px;
+    height: 38px;
+    margin-top: -19px;
+    margin-left: -19px;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 8px rgba(232, 165, 168, 0.5));
+    animation: btnOrbit 12s linear infinite;
+    will-change: transform;
+  }
+  @keyframes btnOrbit {
+    from { transform: rotate(0deg) translateX(115px); }
+    to   { transform: rotate(360deg) translateX(115px); }
+  }
+  .btn-with-orbit:hover .orbit-cookie {
+    animation-duration: 4s;
+  }
+  .btn-with-orbit:hover {
+    box-shadow:
+      0 0 0 6px rgba(232, 165, 168, 0.18),
+      0 16px 36px -8px rgba(232, 165, 168, 0.45);
+  }
+  @media (max-width: 700px) {
+    .orbit-cookie {
+      width: 30px; height: 30px;
+      margin-top: -15px;
+      margin-left: -15px;
+    }
+    @keyframes btnOrbit {
+      from { transform: rotate(0deg) translateX(85px); }
+      to   { transform: rotate(360deg) translateX(85px); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orbit-cookie { animation: none; transform: rotate(45deg) translateX(115px); }
+  }
+
   /* === LABEL === */
   .label {
     display: inline-block;
@@ -319,10 +364,13 @@
   .hero-block {
     position: relative;
     border-radius: 0;
-    overflow: hidden;
+    overflow: visible;
     aspect-ratio: 21 / 9;
     min-height: 520px;
     max-height: 90vh;
+  }
+  .hero-photo {
+    /* override: make sure photo is clipped to block even when overflow: visible */
   }
   @media (max-width: 700px) {
     .hero-block { aspect-ratio: 4 / 5; min-height: 480px; max-height: none; }
@@ -1040,7 +1088,26 @@
       <div class="hero-eyebrow">Köln · Est. 2026</div>
       <h1>A cookie, every Sunday.</h1>
       <p>Bake-to-order from Köln. One recipe, twelve years deep. Baked by hand every Friday.</p>
-      <a href="#shop" class="btn-primary btn-white">Shop now</a>
+      <a href="#shop" class="btn-primary btn-white btn-with-orbit">
+        Shop now
+        <svg class="orbit-cookie" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#3D2A18" stroke-width="3" stroke-linecap="round" fill="none">
+            <line x1="32" y1="3" x2="32" y2="11"/>
+            <line x1="32" y1="53" x2="32" y2="61"/>
+            <line x1="3" y1="32" x2="11" y2="32"/>
+            <line x1="53" y1="32" x2="61" y2="32"/>
+            <line x1="11" y1="11" x2="16" y2="16"/>
+            <line x1="48" y1="48" x2="53" y2="53"/>
+            <line x1="53" y1="11" x2="48" y2="16"/>
+            <line x1="16" y1="48" x2="11" y2="53"/>
+          </g>
+          <circle cx="32" cy="32" r="15" fill="#A56B3A" stroke="#3D2A18" stroke-width="2"/>
+          <circle cx="27" cy="29" r="1.8" fill="#3D2A18"/>
+          <circle cx="36" cy="29" r="1.5" fill="#3D2A18"/>
+          <circle cx="29" cy="35" r="1.7" fill="#3D2A18"/>
+          <circle cx="37" cy="35" r="1.3" fill="#3D2A18"/>
+        </svg>
+      </a>
     </div>
   </div>
 </header>
