@@ -1,0 +1,8 @@
+# Reference images (not part of the site)
+WhatsApp*
+*.tmp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
