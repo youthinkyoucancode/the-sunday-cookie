@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sunday Cookie — Logo Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --aubergine: #2A1A2A;
+    --aubergine-deep: #1A0F1A;
+    --cream: #F5E8D0;
+    --caramel: #A56B3A;
+    --lilac: #C8B5D5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--aubergine-deep);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { padding: 70px 32px 100px; min-height: 100vh; }
+
+  .header {
+    max-width: 720px;
+    margin: 0 auto 64px;
+    text-align: center;
+  }
+  .header .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--lilac);
+    opacity: 0.75;
+    margin-bottom: 22px;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 48px;
+    color: var(--cream);
+    margin-bottom: 18px;
+    letter-spacing: 0.01em;
+  }
+  .header p {
+    color: rgba(245, 232, 208, 0.65);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: linear-gradient(180deg, rgba(245,232,208,0.04), rgba(245,232,208,0.015));
+    border: 1px solid rgba(200, 181, 213, 0.13);
+    border-radius: 18px;
+    padding: 40px 36px 36px;
+    display: flex;
+    flex-direction: column;
+    min-height: 540px;
+  }
+  .card .label {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--lilac);
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .card .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+  .card .stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 12px;
+  }
+  .card .description {
+    font-size: 13.5px;
+    color: rgba(245, 232, 208, 0.62);
+    line-height: 1.65;
+    text-align: left;
+    border-top: 1px solid rgba(200, 181, 213, 0.13);
+    padding-top: 22px;
+    margin-top: 18px;
+  }
+  .card .description em {
+    color: var(--lilac);
+    font-style: italic;
+  }
+
+  /* === DIRECTION 1 — THE EDITORIAL === */
+  .editorial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .editorial .the {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--cream);
+    margin-bottom: -4px;
+  }
+  .editorial .main {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: 0.16em;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .editorial .divider {
+    width: 64px;
+    height: 1px;
+    background: var(--cream);
+    opacity: 0.55;
+    margin: 18px 0 12px;
+  }
+  .editorial .cologne {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.78;
+  }
+
+  /* === DIRECTION 2 — THE SUNDAY SUN === */
+  .sun-stage { text-align: center; }
+  .sun-icon { width: 130px; height: 130px; margin-bottom: 24px; }
+  .sun-stage .wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: 0.09em;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .sun-stage .subline {
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.7;
+  }
+
+  /* === DIRECTION 3 — THE LETTER STAMP === */
+  .stamp-stage { text-align: center; }
+  .stamp { width: 200px; height: 200px; margin-bottom: 18px; }
+  .stamp-stage .caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--cream);
+    opacity: 0.7;
+  }
+
+  /* Mini IG avatar previews */
+  .avatar-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 22px;
+    justify-content: center;
+    align-items: center;
+  }
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--aubergine);
+    border: 1px solid rgba(200, 181, 213, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .avatar svg { width: 70%; height: 70%; }
+  .avatar.editorial-avatar {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .avatar-row .label-tiny {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 232, 208, 0.4);
+  }
+
+  /* Palette footer */
+  .palette {
+    max-width: 1320px;
+    margin: 80px auto 0;
+    padding: 32px;
+    border: 1px solid rgba(200, 181, 213, 0.13);
+    border-radius: 16px;
+    background: rgba(245,232,208,0.02);
+  }
+  .palette h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 22px;
+  }
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .swatch {
+    border: 1px solid rgba(200, 181, 213, 0.13);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .swatch .chip {
+    height: 84px;
+  }
+  .swatch .meta {
+    padding: 12px 14px;
+    background: rgba(245,232,208,0.02);
+  }
+  .swatch .name {
+    font-size: 13px;
+    color: var(--cream);
+    margin-bottom: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .swatch .hex {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(245, 232, 208, 0.55);
+  }
+
+  .footer-note {
+    max-width: 720px;
+    margin: 50px auto 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(245, 232, 208, 0.4);
+    line-height: 1.7;
+  }
+  .footer-note em { color: var(--lilac); font-style: italic; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="eyebrow">Brand exploration · 2026</div>
+  <h1>The Sunday Cookie</h1>
+  <p>Three logo directions. Same brand, different voice. View full screen, sit with each one for thirty seconds, and pick the one that makes you slightly proud.</p>
+</header>
+
+<main class="grid">
+
+  <!-- DIRECTION 1 -->
+  <article class="card">
+    <div class="label">Direction 01</div>
+    <div class="name">The Editorial</div>
+
+    <div class="stage">
+      <div class="editorial">
+        <div class="the">The</div>
+        <div class="main">Sunday<br>Cookie</div>
+        <div class="divider"></div>
+        <div class="cologne">Cologne · Est. 2026</div>
+      </div>
+
+      <div class="avatar-row">
+        <div class="label-tiny">avatar →</div>
+        <div class="avatar editorial-avatar">S<span style="opacity:0.55">C</span></div>
+      </div>
+    </div>
+
+    <p class="description">
+      Pure typography, no icon. Reads like <em>The New Yorker</em> masthead crossed with a vintage NYC bakery sign. Most timeless. Scales perfectly. Will look right on packaging, on a t-shirt, on a hand-painted café window in five years.
+    </p>
+  </article>
+
+  <!-- DIRECTION 2 -->
+  <article class="card">
+    <div class="label">Direction 02</div>
+    <div class="name">The Sunday Sun</div>
+
+    <div class="stage">
+      <div class="sun-stage">
+        <svg class="sun-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sun rays -->
+          <g stroke="#F5E8D0" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.85">
+            <line x1="60" y1="6" x2="60" y2="18"/>
+            <line x1="60" y1="102" x2="60" y2="114"/>
+            <line x1="6" y1="60" x2="18" y2="60"/>
+            <line x1="102" y1="60" x2="114" y2="60"/>
+            <line x1="20" y1="20" x2="28" y2="28"/>
+            <line x1="92" y1="92" x2="100" y2="100"/>
+            <line x1="100" y1="20" x2="92" y2="28"/>
+            <line x1="28" y1="92" x2="20" y2="100"/>
+          </g>
+          <!-- Cookie body -->
+          <circle cx="60" cy="60" r="28" fill="#A56B3A" stroke="#F5E8D0" stroke-width="1.6"/>
+          <!-- Chocolate chips -->
+          <circle cx="52" cy="54" r="3" fill="#2A1A2A"/>
+          <circle cx="66" cy="56" r="2.5" fill="#2A1A2A"/>
+          <circle cx="56" cy="67" r="2.8" fill="#2A1A2A"/>
+          <circle cx="68" cy="68" r="2.2" fill="#2A1A2A"/>
+          <circle cx="50" cy="64" r="2" fill="#2A1A2A"/>
+        </svg>
+        <div class="wordmark">Sunday Cookie</div>
+        <div class="subline">Cologne · Est. 2026</div>
+      </div>
+
+      <div class="avatar-row">
+        <div class="label-tiny">avatar →</div>
+        <div class="avatar">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#F5E8D0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85">
+              <line x1="60" y1="8" x2="60" y2="20"/>
+              <line x1="60" y1="100" x2="60" y2="112"/>
+              <line x1="8" y1="60" x2="20" y2="60"/>
+              <line x1="100" y1="60" x2="112" y2="60"/>
+              <line x1="20" y1="20" x2="28" y2="28"/>
+              <line x1="92" y1="92" x2="100" y2="100"/>
+              <line x1="100" y1="20" x2="92" y2="28"/>
+              <line x1="28" y1="92" x2="20" y2="100"/>
+            </g>
+            <circle cx="60" cy="60" r="28" fill="#A56B3A" stroke="#F5E8D0" stroke-width="2"/>
+            <circle cx="52" cy="54" r="3.5" fill="#2A1A2A"/>
+            <circle cx="66" cy="56" r="3" fill="#2A1A2A"/>
+            <circle cx="56" cy="67" r="3.2" fill="#2A1A2A"/>
+            <circle cx="68" cy="68" r="2.6" fill="#2A1A2A"/>
+            <circle cx="50" cy="64" r="2.4" fill="#2A1A2A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <p class="description">
+      Cookie + sun in a single icon. The visual pun is too good not to use — Sunday is right there, and so is the cookie. <em>Best at small sizes.</em> Doubles as your Instagram avatar and your packaging stamp. Most distinctive of the three.
+    </p>
+  </article>
+
+  <!-- DIRECTION 3 -->
+  <article class="card">
+    <div class="label">Direction 03</div>
+    <div class="name">The Letter Stamp</div>
+
+    <div class="stage">
+      <div class="stamp-stage">
+        <svg class="stamp" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="circleText" d="M 100 100 m -75 0 a 75 75 0 1 1 150 0 a 75 75 0 1 1 -150 0" fill="none"/>
+          </defs>
+          <circle cx="100" cy="100" r="92" fill="none" stroke="#F5E8D0" stroke-width="1.4" opacity="0.9"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#F5E8D0" stroke-width="0.5" opacity="0.6"/>
+          <text fill="#F5E8D0" font-family="Cormorant Garamond, serif" font-size="11" letter-spacing="3.5">
+            <textPath href="#circleText" startOffset="0%">
+              THE SUNDAY COOKIE · COLOGNE · EST 2026 · LESS SUGAR MORE FLAVOR ·
+            </textPath>
+          </text>
+          <text x="100" y="98" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="500" font-size="64" fill="#F5E8D0" text-anchor="middle" dominant-baseline="central">S</text>
+          <text x="100" y="138" font-family="Cormorant Garamond, serif" font-size="9" letter-spacing="3" fill="#F5E8D0" opacity="0.7" text-anchor="middle">SUNDAY · NO. 14</text>
+        </svg>
+        <div class="caption">Stamps every box. Signs every letter.</div>
+      </div>
+
+      <div class="avatar-row">
+        <div class="label-tiny">avatar →</div>
+        <div class="avatar">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="92" fill="none" stroke="#F5E8D0" stroke-width="3"/>
+            <text x="100" y="98" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="500" font-size="100" fill="#F5E8D0" text-anchor="middle" dominant-baseline="central">S</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <p class="description">
+      A wax seal / postage stamp. Lives on every kraft box, every IG post corner, every email signature. <em>Most ritualistic.</em> Pairs beautifully with the "Sunday Letter" framing — every box arrives like real mail. Works best when packaging photography is the hero.
+    </p>
+  </article>
+
+</main>
+
+<section class="palette">
+  <h3>Brand colors</h3>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background:#2A1A2A"></div>
+      <div class="meta"><div class="name">Aubergine</div><div class="hex">#2A1A2A</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#F5E8D0"></div>
+      <div class="meta"><div class="name">Cream</div><div class="hex">#F5E8D0</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#A56B3A"></div>
+      <div class="meta"><div class="name">Caramel</div><div class="hex">#A56B3A</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#C8B5D5"></div>
+      <div class="meta"><div class="name">Lilac</div><div class="hex">#C8B5D5</div></div>
+    </div>
+  </div>
+</section>
+
+<p class="footer-note">
+  These are sketches in HTML — final logos will be drawn in Figma as proper vectors. <em>Pick the direction (or mix elements) that feels most like you.</em><br>
+  Type: Cormorant Garamond + Inter · Both free on Google Fonts.
+</p>
+
+</body>
+</html>
