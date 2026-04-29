@@ -335,19 +335,20 @@
 
   /* === HERO === */
   .hero {
-    max-width: 1280px;
-    margin: 24px auto 0;
-    padding: 0 32px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
   .hero-block {
     position: relative;
-    border-radius: 16px;
+    border-radius: 0;
     overflow: hidden;
-    aspect-ratio: 16 / 10;
-    min-height: 460px;
+    aspect-ratio: 21 / 9;
+    min-height: 520px;
+    max-height: 90vh;
   }
   @media (max-width: 700px) {
-    .hero-block { aspect-ratio: 4 / 5; min-height: 0; }
+    .hero-block { aspect-ratio: 4 / 5; min-height: 480px; max-height: none; }
   }
   .hero-photo {
     position: absolute;
