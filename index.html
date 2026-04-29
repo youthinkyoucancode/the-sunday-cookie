@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://youthinkyoucancode.github.io/the-sunday-cookie/">
 <meta property="og:title" content="The Sunday Cookie — Köln">
 <meta property="og:description" content="A bake-to-order cookie ritual from Köln. Twelve years of perfecting one recipe.">
-<meta property="og:image" content="https://youthinkyoucancode.github.io/the-sunday-cookie/photographs/hero.jpg">
+<meta property="og:image" content="https://youthinkyoucancode.github.io/the-sunday-cookie/photographs/3cookies.jpg">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="823">
 <meta property="og:locale" content="en_US">
@@ -23,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Sunday Cookie — Köln">
 <meta name="twitter:description" content="A bake-to-order cookie ritual from Köln. Twelve years of perfecting one recipe.">
-<meta name="twitter:image" content="https://youthinkyoucancode.github.io/the-sunday-cookie/photographs/hero.jpg">
+<meta name="twitter:image" content="https://youthinkyoucancode.github.io/the-sunday-cookie/photographs/3cookies.jpg">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
@@ -59,8 +59,15 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html {
     scroll-behavior: smooth;
-    /* Reserve scrollbar space always — prevents layout shift + right-edge gap */
-    scrollbar-gutter: stable;
+    /* Hide default scrollbar so hero can truly fill the viewport edge-to-edge */
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE / Edge legacy */
+  }
+  /* WebKit / Chrome / Safari — hide default scrollbar */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
   }
   html, body {
     width: 100%;
@@ -1322,10 +1329,6 @@
   <div class="nav-inner">
     <div class="nav-side nav-left">
       <span class="nav-pill" aria-hidden="true"></span>
-      <span class="nav-status" title="Sunday No. 14 — orders close Wednesday midnight">
-        <span class="status-dot"></span>
-        <span class="status-text">Sunday No. 14 · open</span>
-      </span>
       <a href="#shop" class="nav-link">Shop</a>
       <a href="#story" class="nav-link">Story</a>
       <a href="#shop" class="nav-link">Cookies</a>
