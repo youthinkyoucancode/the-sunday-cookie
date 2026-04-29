@@ -629,6 +629,38 @@
     transform: scale(1.04);
   }
 
+  /* Hover-hint badge — only on cards with video, fades when actually hovering */
+  .product-card .hover-hint {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(42, 26, 15, 0.85);
+    color: var(--bg);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 11px;
+    padding: 7px 14px;
+    border-radius: 100px;
+    z-index: 3;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0.95;
+    animation: hintBob 3s ease-in-out infinite;
+  }
+  @keyframes hintBob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(-4px); }
+  }
+  .product-card.has-video:hover .hover-hint {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+
   .product-card .card-tag {
     font-size: 10px;
     font-weight: 600;
@@ -920,6 +952,17 @@
     max-width: 580px;
     margin-left: auto;
     margin-right: auto;
+  }
+  /* Editorial drop-cap on the first paragraph of the story */
+  .story-section p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 80px;
+    float: left;
+    line-height: 0.85;
+    margin: 8px 14px 0 0;
+    color: var(--gold);
   }
   .story-section .signature {
     font-family: 'Fraunces', serif;
@@ -1223,7 +1266,7 @@
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-block">
-    <img class="hero-photo" src="photographs/3cookies.jpg" alt="Three Sunday cookies — chocolate chip, caramel pecan, lemon raspberry" loading="eager">
+    <img class="hero-photo" src="photographs/coffeecookie.jpg" alt="A Sunday cookie with morning coffee" loading="eager">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">Köln · Est. 2026</div>
@@ -1268,6 +1311,7 @@
         <video class="hover-video" loop muted playsinline preload="metadata">
           <source src="photographs/video.mp4" type="video/mp4">
         </video>
+        <span class="hover-hint">▷ hover to play</span>
       </div>
       <div class="card-tag">No. 01 · The Original · Live</div>
       <div class="name">The Sunday</div>
