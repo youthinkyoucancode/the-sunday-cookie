@@ -1139,9 +1139,9 @@
     gap: 8px;
   }
   .footer-koln-svg {
-    width: 96px; height: auto;
-    color: var(--gold);
-    opacity: 0.85;
+    width: 78px; height: auto;
+    opacity: 0.75;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(38%) saturate(900%) hue-rotate(8deg) brightness(95%) contrast(92%);
   }
   .footer-koln-label {
     font-family: 'Fraunces', serif;
@@ -1292,7 +1292,7 @@
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-block">
-    <img class="hero-photo" src="photographs/3cookies.jpg" alt="The Sunday Cookie — three signature cookies" loading="eager">
+    <img class="hero-photo" src="photographs/hero.jpg" alt="The Sunday Cookie — cookies and coffee on warm linen, Sunday morning" loading="eager">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">Köln · Est. 2026</div>
@@ -1487,24 +1487,7 @@
       <a href="#">Impressum</a>
     </div>
     <div class="footer-koln">
-      <svg class="footer-koln-svg" viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <!-- Rhine river curve (sweeping line at bottom) -->
-        <path d="M 5 78 Q 50 72 95 78 T 195 76" stroke-width="1.2" opacity="0.6"/>
-        <!-- Kölner Dom (Cologne Cathedral) — twin spires + main building -->
-        <!-- Left spire -->
-        <path d="M 80 65 L 80 30 L 78 28 L 80 22 L 82 20 L 84 22 L 86 28 L 84 30 L 84 65 Z"/>
-        <!-- Right spire -->
-        <path d="M 116 65 L 116 30 L 114 28 L 116 22 L 118 20 L 120 22 L 122 28 L 120 30 L 120 65 Z"/>
-        <!-- Cathedral body between spires -->
-        <path d="M 84 65 L 84 45 L 92 38 L 100 32 L 108 38 L 116 45 L 116 65 Z"/>
-        <!-- Cathedral details (rose window) -->
-        <circle cx="100" cy="50" r="3" stroke-width="1"/>
-        <!-- Tiny pin/dot marking "we bake here" -->
-        <circle cx="135" cy="60" r="2.5" fill="currentColor" stroke="none"/>
-        <line x1="135" y1="60" x2="135" y2="55" stroke-width="0.8"/>
-        <!-- Tiny ground line -->
-        <line x1="60" y1="65" x2="140" y2="65" stroke-width="0.8" opacity="0.5"/>
-      </svg>
+      <img class="footer-koln-svg" src="photographs/icon2.png" alt="Kölner Dom — Cologne Cathedral" loading="lazy">
       <span class="footer-koln-label">we bake here</span>
     </div>
 
