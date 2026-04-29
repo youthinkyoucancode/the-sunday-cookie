@@ -45,7 +45,7 @@
     font-weight: 400;
     position: relative;
   }
-  /* Soft warm background blooms — fill the empty side margins on wide displays */
+  /* Soft warm background blooms — subtler, gold-led palette for editorial unity */
   body::before {
     content: '';
     position: fixed;
@@ -53,27 +53,15 @@
     z-index: 0;
     pointer-events: none;
     background-image:
-      radial-gradient(ellipse 900px 700px at 0% 15%, rgba(232, 165, 168, 0.10), transparent 55%),
-      radial-gradient(ellipse 850px 650px at 100% 35%, rgba(213, 229, 220, 0.10), transparent 55%),
-      radial-gradient(ellipse 800px 600px at 5% 75%, rgba(245, 220, 200, 0.10), transparent 55%),
-      radial-gradient(ellipse 700px 550px at 100% 95%, rgba(232, 222, 236, 0.10), transparent 55%);
+      radial-gradient(ellipse 900px 700px at 0% 10%, rgba(165, 107, 58, 0.07), transparent 55%),
+      radial-gradient(ellipse 850px 650px at 100% 50%, rgba(232, 165, 168, 0.06), transparent 55%),
+      radial-gradient(ellipse 800px 600px at 10% 90%, rgba(232, 165, 168, 0.05), transparent 55%);
   }
   body > * { position: relative; z-index: 1; }
   ::selection { background: var(--pink-deep); color: var(--white); }
   img { display: block; max-width: 100%; height: auto; }
 
-  /* === SCROLL PROGRESS BAR === */
-  .scroll-progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--pink-deep), var(--pink-button));
-    width: 0%;
-    z-index: 200;
-    transition: width 0.1s linear;
-    pointer-events: none;
-    box-shadow: 0 0 8px rgba(232, 165, 168, 0.4);
-  }
+  /* scroll progress bar removed — too aggressive for editorial feel */
 
   /* === NAV (magnetic pill) === */
   nav {
@@ -297,85 +285,56 @@
     background: var(--ink); color: var(--white);
   }
 
-  /* === ORBITING SUN-COOKIE BUTTON === */
-  .btn-with-orbit {
+  /* === SHOP BUTTON — refined editorial CTA with single fill-wipe hover === */
+  .btn-shop {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--white);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 17px;
+    padding: 16px 30px 16px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(165, 107, 58, 0.5);
     position: relative;
+    overflow: hidden;
+    transition: color 0.4s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.4s ease;
+    letter-spacing: 0.005em;
+    box-shadow: 0 6px 24px -10px rgba(61, 42, 24, 0.18);
+    cursor: pointer;
     isolation: isolate;
   }
-  /* Shimmer sweep across the button — slow, premium, periodic */
-  .btn-with-orbit::before {
+  .btn-shop::before {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(115deg,
-      transparent 30%,
-      rgba(232, 165, 168, 0.55) 50%,
-      transparent 70%
-    );
-    background-size: 250% 100%;
-    background-position: 250% 0;
-    pointer-events: none;
-    animation: btnShine 4.5s ease-in-out infinite;
-    animation-delay: 1.5s;
+    background: var(--ink);
+    border-radius: 100px;
+    transform: translateX(-101%);
+    transition: transform 0.55s cubic-bezier(0.7, 0, 0.3, 1);
+    z-index: -1;
   }
-  @keyframes btnShine {
-    0%, 25% { background-position: 250% 0; }
-    55%, 100% { background-position: -50% 0; }
+  .btn-shop:hover::before { transform: translateX(0); }
+  .btn-shop:hover {
+    color: var(--bg);
+    border-color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px -10px rgba(61, 42, 24, 0.4);
   }
-  /* Subtle always-on breathing pulse on the button itself (via box-shadow) */
-  .btn-with-orbit {
-    animation: btnBreath 3s ease-in-out infinite;
+  .btn-shop .btn-icon {
+    width: 22px; height: 22px;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
   }
-  @keyframes btnBreath {
-    0%, 100% { box-shadow: 0 4px 18px -6px rgba(232, 165, 168, 0.25); }
-    50%      { box-shadow: 0 8px 26px -6px rgba(232, 165, 168, 0.55); }
-  }
-  .btn-with-orbit:hover {
-    animation-play-state: paused;
-  }
-  .btn-with-orbit:hover::before {
-    animation-duration: 1.2s;
-  }
-  .orbit-cookie {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 38px;
-    height: 38px;
-    margin-top: -19px;
-    margin-left: -19px;
-    pointer-events: none;
-    filter: drop-shadow(0 3px 8px rgba(232, 165, 168, 0.5));
-    animation: btnOrbit 12s linear infinite;
-    will-change: transform;
-  }
-  @keyframes btnOrbit {
-    from { transform: rotate(0deg) translateX(90px); }
-    to   { transform: rotate(360deg) translateX(90px); }
-  }
-  .btn-with-orbit:hover .orbit-cookie {
-    animation-duration: 4s;
-  }
-  .btn-with-orbit:hover {
-    box-shadow:
-      0 0 0 6px rgba(232, 165, 168, 0.18),
-      0 16px 36px -8px rgba(232, 165, 168, 0.45);
-  }
-  @media (max-width: 700px) {
-    .orbit-cookie {
-      width: 30px; height: 30px;
-      margin-top: -15px;
-      margin-left: -15px;
-    }
-    @keyframes btnOrbit {
-      from { transform: rotate(0deg) translateX(85px); }
-      to   { transform: rotate(360deg) translateX(85px); }
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .orbit-cookie { animation: none; transform: rotate(45deg) translateX(115px); }
-  }
+  .btn-shop:hover .btn-icon { transform: rotate(180deg); }
+  .btn-shop .btn-icon .sun-rays { transition: stroke 0.4s ease; }
+  .btn-shop .btn-icon .cookie-body { transition: stroke 0.4s ease; }
+  .btn-shop:hover .btn-icon .sun-rays,
+  .btn-shop:hover .btn-icon .cookie-body { stroke: var(--bg); }
 
   /* === LABEL === */
   .label {
@@ -839,8 +798,57 @@
     display: block;
   }
 
+  /* === SECTION DIVIDER (ornamental, repeats between sections) === */
+  .section-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .section-divider .line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+  }
+  .section-divider .mark {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
   /* === STORY === */
   .story-section { max-width: 720px; margin: 0 auto; padding: 100px 32px; text-align: center; }
+  .story-section .pull-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 3vw, 28px);
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 40px auto 16px;
+    max-width: 520px;
+    position: relative;
+    padding: 32px 0 24px;
+  }
+  .story-section .pull-quote::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 32px;
+  }
+  .story-section .pull-cite {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 20px;
+  }
   .story-image {
     width: 280px;
     aspect-ratio: 1;
@@ -883,122 +891,176 @@
     display: block;
   }
 
-  /* === FEATURES === */
-  .features {
-    max-width: 1280px;
+  /* === RITUALS (was features) — editorial numbered moments === */
+  .rituals {
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 50px 32px 100px;
+    padding: 80px 32px 100px;
   }
-  .features-grid {
+  .rituals-eyebrow {
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 60px;
+  }
+  .rituals-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 80px;
   }
-  @media (max-width: 700px) { .features-grid { grid-template-columns: 1fr; gap: 30px; } }
-  .feature {
-    text-align: center;
-    padding: 26px 16px;
-    border-radius: 12px;
-    transition: background 0.3s ease;
+  @media (max-width: 880px) { .rituals-grid { grid-template-columns: 1fr; gap: 50px; } }
+  .ritual {
+    text-align: left;
+    position: relative;
+    padding-left: 0;
   }
-  .feature:hover { background: var(--pink-soft); }
-  .feature .icon {
-    width: 48px; height: 48px;
-    margin: 0 auto 18px;
-    color: var(--pink-deep);
-    transition: transform 0.4s ease;
+  @media (min-width: 881px) {
+    .ritual + .ritual {
+      border-left: 1px solid var(--gold-line);
+      padding-left: 50px;
+    }
   }
-  .feature:hover .icon { transform: scale(1.15) rotate(-6deg); }
-  .feature h4 {
+  .ritual .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 18px;
+    letter-spacing: 0.02em;
+  }
+  .ritual h4 {
     font-family: 'Fraunces', serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 17px;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .feature p {
-    font-size: 13px;
-    color: var(--ink-mid);
-    line-height: 1.6;
-  }
-
-  /* === NEWSLETTER === */
-  .newsletter {
-    background: linear-gradient(180deg, var(--lavender-soft) 0%, var(--pink-soft) 100%);
-    padding: 90px 32px;
-    text-align: center;
-  }
-  .newsletter-inner { max-width: 560px; margin: 0 auto; }
-  .newsletter h2 {
-    font-family: 'Fraunces', serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(28px, 3.5vw, 42px);
+    font-size: 24px;
     color: var(--ink);
     margin-bottom: 14px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .ritual p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 280px;
+  }
+
+  /* === NEWSLETTER — refined cream + gold, on-theme === */
+  .newsletter {
+    background: linear-gradient(180deg, #F4E8D0 0%, #F0DFB8 100%);
+    padding: 100px 32px;
+    text-align: center;
+    border-top: 1px solid var(--gold-line);
+    border-bottom: 1px solid var(--gold-line);
+    position: relative;
+  }
+  .newsletter::before, .newsletter::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+  }
+  .newsletter::before { top: 12px; }
+  .newsletter::after { bottom: 12px; }
+  .newsletter-inner { max-width: 560px; margin: 0 auto; }
+  .newsletter-eyebrow {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .newsletter h2 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--ink);
+    margin-bottom: 16px;
+    letter-spacing: -0.018em;
     line-height: 1.05;
   }
   .newsletter p {
     color: var(--ink-soft);
     font-size: 15px;
-    margin-bottom: 32px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .newsletter-form {
-    display: flex; gap: 8px;
+    display: flex; gap: 10px;
     max-width: 460px; margin: 0 auto;
   }
   @media (max-width: 500px) { .newsletter-form { flex-direction: column; } }
   .newsletter-form input {
     flex: 1;
-    background: var(--white);
-    border: 2px solid var(--gold-line);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--gold-line);
     color: var(--ink);
-    font-family: inherit;
-    font-size: 14px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
     padding: 14px 22px;
     border-radius: 100px;
     outline: none;
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 14px -6px rgba(61, 42, 24, 0.15);
+    transition: all 0.3s ease;
   }
-  .newsletter-form input::placeholder { color: var(--ink-faint); }
+  .newsletter-form input::placeholder { color: var(--ink-mid); font-style: italic; }
   .newsletter-form input:focus {
-    border-color: var(--pink-deep);
+    border-color: var(--gold);
+    background: var(--white);
     transform: translateY(-2px);
+    box-shadow: 0 6px 18px -8px rgba(165, 107, 58, 0.3);
   }
   .newsletter-form button {
     background: var(--ink);
     color: var(--bg);
-    border: none;
-    font-family: inherit;
+    border: 1px solid var(--ink);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
     font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    padding: 14px 30px;
+    font-size: 15px;
+    padding: 14px 32px;
     border-radius: 100px;
     cursor: pointer;
-    transition: all 0.25s ease;
-    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 0.02em;
   }
   .newsletter-form button:hover {
-    background: var(--pink-deep);
+    background: var(--gold);
+    border-color: var(--gold);
     transform: translateY(-2px);
-    box-shadow: 0 6px 14px -6px rgba(232, 165, 168, 0.5);
+    box-shadow: 0 8px 20px -8px rgba(165, 107, 58, 0.5);
   }
 
-  /* === FOOTER === */
-  footer { background: var(--bg); padding: 80px 32px 40px; text-align: center; border-top: 1px solid var(--line-soft); }
+  /* === FOOTER — refined with sun-cookie mark === */
+  footer { background: var(--bg); padding: 90px 32px 50px; text-align: center; }
   .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-mark {
+    width: 48px; height: 48px;
+    margin: 0 auto 22px;
+    opacity: 0.85;
+    animation: footerMarkSpin 60s linear infinite;
+    transform-origin: center;
+  }
+  @keyframes footerMarkSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
   .footer-brand {
     font-family: 'Fraunces', serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 28px;
     color: var(--ink);
-    margin-bottom: 12px;
-    letter-spacing: -0.012em;
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
   }
   .footer-tag {
     color: var(--ink-soft);
@@ -1068,9 +1130,6 @@
 </head>
 <body>
 
-<!-- ============ SCROLL PROGRESS ============ -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
 <!-- ============ NAV ============ -->
 <nav id="nav">
   <div class="nav-inner">
@@ -1125,10 +1184,9 @@
       <div class="hero-eyebrow">Köln · Est. 2026</div>
       <h1>A cookie, every Sunday.</h1>
       <p>Bake-to-order from Köln. One recipe, twelve years deep. Baked by hand every Friday.</p>
-      <a href="#shop" class="btn-primary btn-white btn-with-orbit">
-        Shop now
-        <svg class="orbit-cookie" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g stroke="#3D2A18" stroke-width="3" stroke-linecap="round" fill="none">
+      <a href="#shop" class="btn-shop">
+        <svg class="btn-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g class="sun-rays" stroke="#3D2A18" stroke-width="3" stroke-linecap="round" fill="none">
             <line x1="32" y1="3" x2="32" y2="11"/>
             <line x1="32" y1="53" x2="32" y2="61"/>
             <line x1="3" y1="32" x2="11" y2="32"/>
@@ -1138,12 +1196,13 @@
             <line x1="53" y1="11" x2="48" y2="16"/>
             <line x1="16" y1="48" x2="11" y2="53"/>
           </g>
-          <circle cx="32" cy="32" r="15" fill="#A56B3A" stroke="#3D2A18" stroke-width="2"/>
+          <circle class="cookie-body" cx="32" cy="32" r="15" fill="#A56B3A" stroke="#3D2A18" stroke-width="2"/>
           <circle cx="27" cy="29" r="1.8" fill="#3D2A18"/>
           <circle cx="36" cy="29" r="1.5" fill="#3D2A18"/>
           <circle cx="29" cy="35" r="1.7" fill="#3D2A18"/>
           <circle cx="37" cy="35" r="1.3" fill="#3D2A18"/>
         </svg>
+        <span>Shop now</span>
       </a>
     </div>
   </div>
@@ -1220,51 +1279,51 @@
   <p>I was fifteen when I started baking, in Tunisia. Sunday was my one day off school, so I'd bake for my family — almost always cookies. They still remember the first ones.</p>
   <p>The Sunday tradition came with me to Cologne in 2022. Twelve years of perfecting one recipe — brown butter, deep brown sugar, real chocolate in proper chunks — and I'm finally sharing it.</p>
   <span class="signature">— Abir</span>
+
+  <blockquote class="pull-quote">
+    "My mom doesn't even like chocolate. She still asks for these every Sunday."
+    <div class="pull-cite">— her mom</div>
+  </blockquote>
 </section>
 
-<!-- ============ FEATURES ============ -->
-<section class="features">
-  <div class="features-grid">
-    <div class="feature fade-up">
-      <svg class="icon" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="25" cy="25" r="15"/>
-        <circle cx="20" cy="22" r="2" fill="currentColor"/>
-        <circle cx="29" cy="20" r="1.6" fill="currentColor"/>
-        <circle cx="22" cy="29" r="1.8" fill="currentColor"/>
-        <circle cx="30" cy="28" r="1.4" fill="currentColor"/>
-      </svg>
+<!-- ============ RITUALS (editorial features) ============ -->
+<section class="rituals">
+  <div class="rituals-eyebrow fade-up">— the way it works —</div>
+  <div class="rituals-grid">
+    <div class="ritual fade-up">
+      <div class="num">No. 01</div>
       <h4>Bake-to-order</h4>
-      <p>Baked fresh every Friday. No surplus, no waste.</p>
+      <p>Baked fresh every Friday. The dough rests overnight on Wednesday and meets the oven Friday morning. No surplus, no waste.</p>
     </div>
-    <div class="feature fade-up">
-      <svg class="icon" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="6" y="18" width="22" height="14" rx="1"/>
-        <path d="M28 22 L36 22 L42 28 L42 32 L28 32 Z"/>
-        <circle cx="14" cy="36" r="3"/>
-        <circle cx="36" cy="36" r="3"/>
-      </svg>
+    <div class="ritual fade-up">
+      <div class="num">No. 02</div>
       <h4>Free Köln delivery</h4>
-      <p>Delivered by hand. DHL elsewhere in Germany.</p>
+      <p>Hand-delivered within Köln. DHL across the rest of Germany. Boxes leave the kitchen Saturday, fresh from the oven the day before.</p>
     </div>
-    <div class="feature fade-up">
-      <svg class="icon" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="9" y="14" width="32" height="22" rx="2"/>
-        <path d="M9 18 L25 28 L41 18"/>
-      </svg>
+    <div class="ritual fade-up">
+      <div class="num">No. 03</div>
       <h4>The Sunday Letter</h4>
-      <p>A short note when orders open. Once a week, never more.</p>
+      <p>A short note when orders open each week. Sometimes about the cookie. Sometimes about the chocolate. Once a week, never more.</p>
     </div>
   </div>
 </section>
 
+<!-- ============ ORNAMENTAL DIVIDER ============ -->
+<div class="section-divider">
+  <span class="line"></span>
+  <span class="mark"></span>
+  <span class="line"></span>
+</div>
+
 <!-- ============ NEWSLETTER ============ -->
 <section class="newsletter" id="newsletter">
   <div class="newsletter-inner fade-up">
-    <h2>Get the Sunday Letter.</h2>
-    <p>A short note when orders open. Once a week, never more.</p>
-    <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Added';">
-      <input type="email" placeholder="your email" required>
-      <button type="submit">Subscribe</button>
+    <div class="newsletter-eyebrow">— the sunday letter —</div>
+    <h2>A short note,<br>once a week.</h2>
+    <p>When orders open. Sometimes about the cookie. Sometimes about why the chocolate I'm using changed. Never more than once a week.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Added ✓';">
+      <input type="email" placeholder="your email address" required>
+      <button type="submit">Send me the letter</button>
     </form>
   </div>
 </section>
@@ -1272,6 +1331,23 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="footer-inner">
+    <svg class="footer-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#3D2A18" stroke-width="3" stroke-linecap="round" fill="none">
+        <line x1="32" y1="3" x2="32" y2="11"/>
+        <line x1="32" y1="53" x2="32" y2="61"/>
+        <line x1="3" y1="32" x2="11" y2="32"/>
+        <line x1="53" y1="32" x2="61" y2="32"/>
+        <line x1="11" y1="11" x2="16" y2="16"/>
+        <line x1="48" y1="48" x2="53" y2="53"/>
+        <line x1="53" y1="11" x2="48" y2="16"/>
+        <line x1="16" y1="48" x2="11" y2="53"/>
+      </g>
+      <circle cx="32" cy="32" r="15" fill="#A56B3A" stroke="#3D2A18" stroke-width="2"/>
+      <circle cx="27" cy="29" r="1.8" fill="#3D2A18"/>
+      <circle cx="36" cy="29" r="1.5" fill="#3D2A18"/>
+      <circle cx="29" cy="35" r="1.7" fill="#3D2A18"/>
+      <circle cx="37" cy="35" r="1.3" fill="#3D2A18"/>
+    </svg>
     <div class="footer-brand">the sunday cookie</div>
     <p class="footer-tag">A bake-to-order cookie ritual from Köln. One recipe, twelve years deep.</p>
     <div class="footer-links">
@@ -1332,17 +1408,6 @@
       side.classList.remove('engaged');
     });
   });
-
-  // === Scroll progress bar ===
-  const progressBar = document.getElementById('scrollProgress');
-  function updateScrollProgress() {
-    const scrolled = window.scrollY;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = max > 0 ? (scrolled / max) * 100 : 0;
-    progressBar.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
-  updateScrollProgress();
 
   // === Nav condense on scroll ===
   const nav = document.getElementById('nav');
