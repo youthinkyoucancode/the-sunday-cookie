@@ -59,45 +59,6 @@
     box-shadow: 0 0 8px rgba(232, 165, 168, 0.4);
   }
 
-  /* === ANNOUNCEMENT === */
-  .announcement {
-    background: var(--pink-soft);
-    color: var(--ink-soft);
-    text-align: center;
-    padding: 11px 20px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    position: relative;
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-  }
-  .announcement .dot { color: var(--pink-deep); margin: 0 10px; }
-  .announce-status {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: var(--pink-deep);
-    border-radius: 50%;
-    margin-right: 10px;
-    flex-shrink: 0;
-    position: relative;
-    animation: livePulse 2.4s ease-in-out infinite;
-  }
-  @keyframes livePulse {
-    0%, 100% {
-      opacity: 1;
-      box-shadow: 0 0 0 0 rgba(232, 165, 168, 0.6);
-    }
-    70% {
-      opacity: 0.7;
-      box-shadow: 0 0 0 8px rgba(232, 165, 168, 0);
-    }
-  }
-
   /* === NAV (magnetic pill) === */
   nav {
     position: sticky; top: 0; z-index: 100;
@@ -794,9 +755,6 @@
 
 <!-- ============ SCROLL PROGRESS ============ -->
 <div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- ============ ANNOUNCEMENT ============ -->
-<div class="announcement"><span class="announce-status" aria-hidden="true"></span>Free hand-delivery in Köln <span class="dot">•</span> DHL across Germany</div>
 
 <!-- ============ NAV ============ -->
 <nav id="nav">
