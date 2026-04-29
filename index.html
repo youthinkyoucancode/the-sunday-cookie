@@ -302,6 +302,41 @@
     position: relative;
     isolation: isolate;
   }
+  /* Shimmer sweep across the button — slow, premium, periodic */
+  .btn-with-orbit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(115deg,
+      transparent 30%,
+      rgba(232, 165, 168, 0.55) 50%,
+      transparent 70%
+    );
+    background-size: 250% 100%;
+    background-position: 250% 0;
+    pointer-events: none;
+    animation: btnShine 4.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+  @keyframes btnShine {
+    0%, 25% { background-position: 250% 0; }
+    55%, 100% { background-position: -50% 0; }
+  }
+  /* Subtle always-on breathing pulse on the button itself (via box-shadow) */
+  .btn-with-orbit {
+    animation: btnBreath 3s ease-in-out infinite;
+  }
+  @keyframes btnBreath {
+    0%, 100% { box-shadow: 0 4px 18px -6px rgba(232, 165, 168, 0.25); }
+    50%      { box-shadow: 0 8px 26px -6px rgba(232, 165, 168, 0.55); }
+  }
+  .btn-with-orbit:hover {
+    animation-play-state: paused;
+  }
+  .btn-with-orbit:hover::before {
+    animation-duration: 1.2s;
+  }
   .orbit-cookie {
     position: absolute;
     top: 50%;
