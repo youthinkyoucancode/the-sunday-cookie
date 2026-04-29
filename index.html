@@ -351,8 +351,8 @@
     will-change: transform;
   }
   @keyframes btnOrbit {
-    from { transform: rotate(0deg) translateX(115px); }
-    to   { transform: rotate(360deg) translateX(115px); }
+    from { transform: rotate(0deg) translateX(90px); }
+    to   { transform: rotate(360deg) translateX(90px); }
   }
   .btn-with-orbit:hover .orbit-cookie {
     animation-duration: 4s;
@@ -399,13 +399,10 @@
   .hero-block {
     position: relative;
     border-radius: 0;
-    overflow: visible;
+    overflow: hidden;
     aspect-ratio: 21 / 9;
     min-height: 520px;
     max-height: 90vh;
-  }
-  .hero-photo {
-    /* override: make sure photo is clipped to block even when overflow: visible */
   }
   @media (max-width: 700px) {
     .hero-block { aspect-ratio: 4 / 5; min-height: 480px; max-height: none; }
@@ -427,8 +424,9 @@
     position: absolute; inset: 0;
     background: linear-gradient(180deg,
       rgba(253, 250, 243, 0.0) 0%,
-      rgba(253, 250, 243, 0.15) 40%,
-      rgba(253, 250, 243, 0.65) 100%);
+      rgba(253, 250, 243, 0.25) 35%,
+      rgba(253, 250, 243, 0.78) 65%,
+      rgba(253, 250, 243, 0.95) 100%);
     z-index: 1;
   }
   .hero-content {
@@ -466,13 +464,16 @@
     letter-spacing: -0.03em;
     margin-bottom: 18px;
     max-width: 580px;
+    text-shadow: 0 2px 12px rgba(253, 250, 243, 0.6);
   }
   .hero p {
-    color: var(--ink-soft);
+    color: var(--ink);
     font-size: 16px;
+    font-weight: 500;
     line-height: 1.7;
     margin-bottom: 28px;
     max-width: 440px;
+    text-shadow: 0 1px 8px rgba(253, 250, 243, 0.7);
   }
 
   /* Hero entrance stagger */
@@ -952,14 +953,15 @@
   .newsletter-form input {
     flex: 1;
     background: var(--white);
-    border: 2px solid transparent;
+    border: 2px solid var(--gold-line);
     color: var(--ink);
     font-family: inherit;
     font-size: 14px;
     padding: 14px 22px;
     border-radius: 100px;
     outline: none;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 14px -6px rgba(61, 42, 24, 0.15);
   }
   .newsletter-form input::placeholder { color: var(--ink-faint); }
   .newsletter-form input:focus {
