@@ -442,9 +442,9 @@
     width: 100%;
     border-radius: 0;
     overflow: hidden;
-    aspect-ratio: 21 / 9;
-    min-height: 520px;
-    max-height: 90vh;
+    /* Fixed-height range — no aspect-ratio so width always fills 100vw,
+       even when viewport is short. Photo's object-fit: cover handles framing. */
+    height: clamp(520px, 62vh, 720px);
   }
   @media (max-width: 700px) {
     .hero-block { aspect-ratio: 4 / 5; min-height: 480px; max-height: none; }
