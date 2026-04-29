@@ -422,65 +422,173 @@
   @media (max-width: 880px) { .product-grid { grid-template-columns: 1fr; gap: 14px; } }
 
   .product-card {
-    border-radius: 16px;
-    padding: 24px 20px 26px;
-    text-align: center;
+    border-radius: 18px;
+    padding: 22px 22px 24px;
+    text-align: left;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   .product-card.mint { background: var(--mint); }
   .product-card.pink { background: var(--pink); }
   .product-card.lavender { background: var(--lavender); }
   .product-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 18px 40px -16px rgba(61, 42, 24, 0.18);
+    box-shadow: 0 22px 44px -18px rgba(61, 42, 24, 0.22);
   }
   .product-card .image {
     aspect-ratio: 1;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     margin-bottom: 22px;
     background: rgba(255, 255, 255, 0.3);
+    position: relative;
+  }
+  .product-card .image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.06) 100%);
   }
   .product-card .image img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
   }
   .product-card:hover .image img {
     transform: scale(1.06);
+  }
+  .product-card.coming-soon .image img { filter: saturate(0.85) brightness(1.02); }
+  .product-card.coming-soon:hover .image img { filter: saturate(1) brightness(1); }
+
+  .product-card .card-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    margin-bottom: 8px;
   }
   .product-card .name {
     font-family: 'Fraunces', serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 19px;
+    font-size: 22px;
     color: var(--ink);
-    margin-bottom: 4px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
   }
-  .product-card .price {
+  .product-card .desc {
     font-size: 13px;
     color: var(--ink-soft);
-    font-weight: 500;
-    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    min-height: 38px;
   }
+
+  .product-card .card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 14px;
+    margin-top: auto;
+    border-top: 1px dashed rgba(61, 42, 24, 0.18);
+  }
+  .product-card .price {
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1;
+    font-size: 13px;
+  }
+  .product-card .price .from {
+    font-weight: 500;
+    color: var(--ink-mid);
+    font-size: 10px;
+    margin-right: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .product-card .price .amount {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .product-card .price.soon-price {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  .product-card .card-cta {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 100px;
+    background: var(--white);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
+    box-shadow: 0 3px 10px -3px rgba(61, 42, 24, 0.15);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .product-card .card-cta:hover {
+    background: var(--ink);
+    color: var(--bg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px -4px rgba(61, 42, 24, 0.3);
+  }
+  .product-card .card-cta .arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+  }
+  .product-card .card-cta:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* Refined badge */
   .product-card .badge {
     position: absolute;
-    top: 16px; right: 16px;
-    background: var(--white);
+    top: 14px; right: 14px;
+    background: rgba(255, 255, 255, 0.95);
     color: var(--ink-soft);
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.14em;
-    padding: 6px 12px;
+    letter-spacing: 0.08em;
+    padding: 7px 12px 7px 10px;
     border-radius: 100px;
-    text-transform: uppercase;
-    box-shadow: 0 2px 6px -2px rgba(61, 42, 24, 0.1);
+    text-transform: lowercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 6px 16px -6px rgba(61, 42, 24, 0.22);
     z-index: 2;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
-  .product-card.coming-soon { opacity: 0.92; }
+  .product-card .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--pink-deep);
+    animation: badgePulse 2.4s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes badgePulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(232,165,168,0.55); }
+    70%      { opacity: 0.6; transform: scale(0.9); box-shadow: 0 0 0 6px rgba(232,165,168,0); }
+  }
 
   .product-section .all-cookies { margin-top: 40px; }
 
@@ -828,26 +936,41 @@
       <div class="image">
         <img src="photographs/chocolatechip.jpg" alt="The Sunday — chocolate chip cookie" loading="lazy">
       </div>
+      <div class="card-tag">No. 01 · The Original</div>
       <div class="name">The Sunday</div>
-      <div class="price">From €3.50</div>
+      <div class="desc">Brown butter, deep brown sugar, dark Belgian chocolate in proper chunks, Maldon sea salt.</div>
+      <div class="card-bottom">
+        <div class="price"><span class="from">From</span><span class="amount">€3.50</span></div>
+        <a href="#order" class="card-cta">Order <span class="arrow">→</span></a>
+      </div>
     </div>
 
     <div class="product-card pink coming-soon fade-up">
-      <span class="badge">soon</span>
+      <span class="badge"><span class="badge-dot"></span>in development</span>
       <div class="image">
         <img src="photographs/caramelpecan.jpg" alt="Caramel pecan cookie" loading="lazy">
       </div>
+      <div class="card-tag">No. 02 · The Caramel</div>
       <div class="name">Caramel Pecan</div>
-      <div class="price">Coming soon</div>
+      <div class="desc">Brown butter, slow-cooked salted caramel, toasted pecans.</div>
+      <div class="card-bottom">
+        <div class="price soon-price">Coming summer 2026</div>
+        <a href="#newsletter" class="card-cta">Notify me <span class="arrow">→</span></a>
+      </div>
     </div>
 
     <div class="product-card lavender coming-soon fade-up">
-      <span class="badge">soon</span>
+      <span class="badge"><span class="badge-dot"></span>in development</span>
       <div class="image">
         <img src="photographs/lemonraspberry.jpg" alt="Lemon raspberry white chocolate cookie" loading="lazy">
       </div>
+      <div class="card-tag">No. 03 · The Bright</div>
       <div class="name">Lemon Raspberry</div>
-      <div class="price">Coming soon</div>
+      <div class="desc">Lemon zest, fresh raspberries, white chocolate, soft chewy middle.</div>
+      <div class="card-bottom">
+        <div class="price soon-price">Coming autumn 2026</div>
+        <a href="#newsletter" class="card-cta">Notify me <span class="arrow">→</span></a>
+      </div>
     </div>
   </div>
 
