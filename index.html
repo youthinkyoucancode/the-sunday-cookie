@@ -901,7 +901,9 @@
     transform: translateY(28px);
     transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1), transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .moment h2 span:nth-child(1) { color: var(--ink-soft); }
+  /* Build-up: muted ink → full ink → gold reveal. Span 1 needs to feel
+     subtle but readable — pure --ink-soft was washing out on cream. */
+  .moment h2 span:nth-child(1) { color: rgba(61, 42, 24, 0.7); }
   .moment h2 span:nth-child(2) { color: var(--ink); }
   .moment h2 span:nth-child(3) { color: var(--gold); }
   .moment.in h2 span { opacity: 1; transform: translateY(0); }
@@ -989,19 +991,22 @@
     font-size: 16px;
     line-height: 1.85;
     margin-bottom: 18px;
-    max-width: 580px;
+    max-width: 540px;
     margin-left: auto;
     margin-right: auto;
+    /* Body copy reads as a left-aligned column so the drop-cap anchors
+       the first line naturally instead of floating in centered space. */
+    text-align: left;
   }
   /* Editorial drop-cap on the first paragraph of the story */
   .story-section p:first-of-type::first-letter {
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 80px;
+    font-size: 64px;
     float: left;
-    line-height: 0.85;
-    margin: 8px 14px 0 0;
+    line-height: 0.9;
+    margin: 6px 12px 0 0;
     color: var(--gold);
   }
   .story-section .signature {
