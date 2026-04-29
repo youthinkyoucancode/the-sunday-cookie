@@ -6,3 +6,6 @@ WhatsApp*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local working files — not part of the public site
+scroll-stop-prompts.html
