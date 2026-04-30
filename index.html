@@ -879,7 +879,11 @@
     color: var(--ink-soft);
     line-height: 1.5;
     margin-bottom: 18px;
-    min-height: 38px;
+    /* Reserve 3 lines so the price+CTA strip aligns across all cards
+       even when descriptions are different lengths (Sunday=3 lines,
+       others=1). text-wrap: balance prevents the lone "salt." widow. */
+    min-height: 60px;
+    text-wrap: balance;
   }
 
   .product-card .card-bottom {
