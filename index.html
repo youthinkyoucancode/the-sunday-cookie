@@ -1545,7 +1545,7 @@
     <div class="nav-side nav-right">
       <span class="nav-pill" aria-hidden="true"></span>
       <a href="#newsletter" class="nav-link" data-section="newsletter">Letter</a>
-      <a href="#shop" class="nav-cta">Order <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="mailto:hello@thesundaycookie.de?subject=Order%20%E2%80%94%20The%20Sunday&amp;body=Hi%20Abir%2C%0A%0AI%27d%20like%20to%20order%20The%20Sunday.%0A%0AHow%20many%3A%20%0ADelivery%20Sunday%3A%20%0AAddress%20(or%20DHL)%3A%20%0A%0AThanks!" class="nav-cta">Order <span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -1559,7 +1559,7 @@
     <a href="#story" class="mobile-link">Story</a>
     <a href="#shop" class="mobile-link">Cookies</a>
     <a href="#newsletter" class="mobile-link">Letter</a>
-    <a href="#shop" class="mobile-cta">Order this Sunday <span class="arrow" aria-hidden="true">→</span></a>
+    <a href="mailto:hello@thesundaycookie.de?subject=Order%20%E2%80%94%20The%20Sunday&amp;body=Hi%20Abir%2C%0A%0AI%27d%20like%20to%20order%20The%20Sunday.%0A%0AHow%20many%3A%20%0ADelivery%20Sunday%3A%20%0AAddress%20(or%20DHL)%3A%20%0A%0AThanks!" class="mobile-cta">Order this Sunday <span class="arrow" aria-hidden="true">→</span></a>
     <div class="mobile-menu-footnote">for my dad &middot; A.</div>
   </div>
 </div>
@@ -1620,7 +1620,7 @@
       <div class="desc">Brown butter, deep brown sugar, dark Belgian chocolate in proper chunks, finished with Maldon sea salt.</div>
       <div class="card-bottom">
         <div class="price"><span class="from">From</span><span class="amount">€3.50</span></div>
-        <a href="#order" class="card-cta">Order <span class="arrow">→</span></a>
+        <a href="mailto:hello@thesundaycookie.de?subject=Order%20%E2%80%94%20The%20Sunday&amp;body=Hi%20Abir%2C%0A%0AI%27d%20like%20to%20order%20The%20Sunday.%0A%0AHow%20many%3A%20%0ADelivery%20Sunday%3A%20%0AAddress%20(or%20DHL)%3A%20%0A%0AThanks!" class="card-cta">Order <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -1723,8 +1723,15 @@
     <div class="newsletter-eyebrow">— the sunday letter —</div>
     <h2>A short note,<br>once a week.</h2>
     <p>When orders open. Sometimes about the cookie. Sometimes about why the chocolate I'm using changed. Never more than once a week.</p>
-    <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Added ✓';">
-      <input type="email" placeholder="your email address" required>
+    <!-- Newsletter form — opens user's mail client with a pre-filled subscribe email.
+         Real launch: swap the form action to ConvertKit / Mailchimp / Buttondown / Formspree
+         endpoint and remove the JS handler. -->
+    <form class="newsletter-form"
+          action="mailto:hello@thesundaycookie.de"
+          method="post"
+          enctype="text/plain"
+          onsubmit="(() => { const email = this.email.value; if (!email) return false; window.location.href = 'mailto:hello@thesundaycookie.de?subject=' + encodeURIComponent('Subscribe to The Sunday Letter') + '&body=' + encodeURIComponent('Please add ' + email + ' to The Sunday Letter list.'); this.querySelector('button').textContent = 'Email opened ✓'; setTimeout(() => { this.querySelector('button').textContent = 'Send me the letter'; this.email.value = ''; }, 4000); return false; })();">
+      <input type="email" name="email" placeholder="your email address" required>
       <button type="submit">Send me the letter</button>
     </form>
   </div>
