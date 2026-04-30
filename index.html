@@ -651,16 +651,35 @@
   .hero-eyebrow {
     font-family: 'Inter', sans-serif;
     font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.32em;
+    font-weight: 600;
+    letter-spacing: 0.34em;
     text-transform: uppercase;
     color: var(--ink);
-    margin-bottom: 18px;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 6px 16px;
+    margin-bottom: 22px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 8px 20px 8px 18px;
     border-radius: 100px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 14px -6px rgba(61, 42, 24, 0.22);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  /* Tiny pulsing gold dot — same vocabulary as the Sunday card's
+     "Baking now" pill, ties the hero to the brand's live signal. */
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: heroPillPulse 2.6s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes heroPillPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.45; transform: scale(0.8); }
   }
   .hero h1 {
     font-family: 'Fraunces', serif;
@@ -828,11 +847,16 @@
   /* Hover-video swap: photo fades out, video fades in */
   .product-card.has-video:hover .image img { opacity: 0; }
   .product-card.has-video:hover .image .hover-video { opacity: 1; }
-  /* Coming-soon cards: subtle desaturation, photo zoom on hover */
-  .product-card.coming-soon .image img { filter: saturate(0.88) brightness(1.02); }
+  /* Coming-soon cards: subtle desaturation, slow Ken Burns zoom on hover.
+     Longer easing (4s) so it feels cinematic, not snappy. Pairs visually
+     with The Sunday's hover-video — every card now has motion intent. */
+  .product-card.coming-soon .image img {
+    filter: saturate(0.88) brightness(1.02);
+    transition: opacity 0.6s ease, transform 4s ease-out, filter 0.8s ease;
+  }
   .product-card.coming-soon:hover .image img {
     filter: saturate(1) brightness(1);
-    transform: scale(1.04);
+    transform: scale(1.08);
   }
 
   /* Hover-hint badge — only on cards with video, fades when actually hovering */
