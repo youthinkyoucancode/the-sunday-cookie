@@ -169,7 +169,8 @@
   @media (max-width: 700px) {
     .nav-left, .nav-right { display: none; }
     .nav-inner { grid-template-columns: 1fr; justify-items: center; padding: 16px 24px; }
-    .nav-burger { display: block; }
+    /* .nav-burger display:block moved below the base .nav-burger declaration
+       so cascade order doesn't override it. See line ~415. */
   }
   /* Lock body scroll while drawer is open */
   body.menu-open { overflow: hidden; }
@@ -407,6 +408,11 @@
   body.menu-open .nav-burger span:nth-child(3) {
     transform: translateY(-6.5px) rotate(-45deg);
   }
+  /* Burger only visible on mobile — placed AFTER base .nav-burger so cascade
+     order wins regardless of specificity. */
+  @media (max-width: 700px) {
+    .nav-burger { display: block; }
+  }
 
   /* === MOBILE DRAWER === */
   .mobile-menu {
@@ -601,7 +607,11 @@
     height: clamp(520px, 62vh, 720px);
   }
   @media (max-width: 700px) {
-    .hero-block { aspect-ratio: 4 / 5; min-height: 480px; max-height: none; }
+    /* On phones, prefer a slightly tighter hero that doesn't dominate
+       the screen. Width always 100%; photo's object-fit: cover handles
+       framing. (Cleared the old aspect-ratio that was being silently
+       ignored because height: clamp() above takes priority.) */
+    .hero-block { height: clamp(460px, 70vh, 600px); }
   }
   .hero-photo {
     position: absolute;
@@ -987,6 +997,11 @@
   }
   .product-card .card-cta:hover .arrow {
     transform: translateX(3px);
+  }
+  /* Mobile touch target: pad card CTA so it clears WCAG 44×44 minimum.
+     Desktop stays at 36px tall (mouse precision is fine). */
+  @media (max-width: 640px) {
+    .product-card .card-cta { padding: 13px 18px; font-size: 12px; }
   }
 
   /* Refined badge */
@@ -1448,6 +1463,12 @@
   }
   .footer-links a:hover { color: var(--pink-deep); }
   .footer-links a:hover::after { transform: scaleX(1); }
+  /* Mobile touch targets: pad each footer link so the tappable area
+     hits WCAG 44×44 minimum without changing visual size. */
+  @media (max-width: 700px) {
+    .footer-links { gap: 4px 18px; }
+    .footer-links a { padding: 10px 6px; }
+  }
   .footer-bottom {
     padding-top: 30px;
     border-top: 1px solid var(--line-soft);
