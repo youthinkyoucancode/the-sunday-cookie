@@ -29,7 +29,7 @@
 <link rel="apple-touch-icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #FDFAF3;
@@ -726,6 +726,90 @@
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
+  /* ====== EDITORIAL HERO — Awwwards-style serif lockup ====== */
+  .grain {
+    position: fixed; inset: 0; z-index: 90; pointer-events: none;
+    opacity: 0.045; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  @media (prefers-reduced-motion: reduce) { .grain { display: none; } }
+
+  .eh-hero {
+    position: relative; min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 120px clamp(20px,5vw,56px) 60px; overflow: hidden;
+  }
+  .eh-hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 36%, rgba(212,181,137,0.22), transparent 70%),
+      radial-gradient(ellipse 50% 50% at 85% 92%, rgba(232,165,168,0.12), transparent 70%);
+  }
+  .eh-ghost {
+    position: absolute; right: -8%; bottom: -12%; width: min(44vw,600px);
+    aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+    opacity: 0.15; filter: saturate(0.6) blur(1px); z-index: 0;
+    -webkit-mask-image: radial-gradient(circle, #000 55%, transparent 72%);
+    mask-image: radial-gradient(circle, #000 55%, transparent 72%);
+  }
+  .eh-ghost img { width: 100%; height: 100%; object-fit: cover; }
+
+  .eh-eyebrow {
+    position: relative; z-index: 2; font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: clamp(18px,3.5vh,40px);
+    display: inline-flex; align-items: center; gap: 14px;
+  }
+  .eh-eyebrow::before, .eh-eyebrow::after { content:''; width: clamp(20px,6vw,54px); height:1px; background: var(--gold-soft); }
+
+  .eh-lockup {
+    position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center;
+    line-height: 0.84; margin: 0;
+  }
+  .eh-the {
+    align-self: flex-start; margin-left: clamp(4px,7%,90px);
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(28px,6.5vw,86px); color: var(--gold); margin-bottom: -0.12em;
+  }
+  .eh-sunday {
+    font-family: 'Fraunces', serif; font-weight: 600; font-optical-sizing: auto;
+    font-size: clamp(72px,19vw,260px); letter-spacing: -0.035em; text-transform: uppercase; color: var(--ink);
+  }
+  .eh-cookie {
+    align-self: flex-end; margin-right: clamp(4px,5%,70px);
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(40px,11vw,148px); color: var(--ink-soft); margin-top: -0.14em;
+  }
+
+  .eh-reveal { opacity: 0; transform: translateY(46px); filter: blur(10px); }
+  .eh-hero.in .eh-reveal {
+    opacity: 1; transform: none; filter: none;
+    transition: opacity 1.2s cubic-bezier(.16,1,.3,1), transform 1.2s cubic-bezier(.16,1,.3,1), filter 1.2s cubic-bezier(.16,1,.3,1);
+  }
+  .eh-hero.in .d1 { transition-delay:.15s } .eh-hero.in .d2 { transition-delay:.32s }
+  .eh-hero.in .d3 { transition-delay:.5s } .eh-hero.in .d4 { transition-delay:.7s } .eh-hero.in .d5 { transition-delay:.9s }
+
+  .eh-sub { position: relative; z-index: 2; margin-top: clamp(26px,5vh,50px); display:flex; flex-direction:column; align-items:center; gap: 22px; }
+  .eh-tag { font-family:'Inter',sans-serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+  .eh-cta {
+    display:inline-flex; align-items:center; gap:10px; padding: 15px 30px; border-radius: 100px;
+    background: var(--ink); color: var(--bg); font-family:'Inter',sans-serif; font-size:12px;
+    letter-spacing:0.16em; text-transform:uppercase; font-weight:600; text-decoration:none;
+    transition: background .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
+  }
+  .eh-cta .arr { transition: transform .3s ease; }
+  .eh-cta:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 12px 28px -10px rgba(165,107,58,.6); }
+  .eh-cta:hover .arr { transform: translateX(4px); }
+  @media (prefers-reduced-motion: reduce) { .eh-reveal { opacity:1!important; transform:none!important; filter:none!important; } }
+
+  .eh-marquee { width: 100%; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0; background: var(--bg); }
+  .eh-marquee-track { display: inline-flex; white-space: nowrap; will-change: transform; animation: ehMarq 36s linear infinite; }
+  .eh-marquee:hover .eh-marquee-track { animation-play-state: paused; }
+  .eh-marquee span { font-family:'Fraunces',serif; font-style: italic; font-size: 17px; color: var(--ink-soft); padding: 0 26px; }
+  .eh-marquee span::after { content:'·'; color: var(--gold); margin-left: 52px; }
+  @keyframes ehMarq { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .eh-marquee-track { animation: none; } }
 
   /* === SECTION === */
   .section { max-width: 1280px; margin: 0 auto; padding: 100px 32px; text-align: center; }
@@ -1536,6 +1620,8 @@
 <body>
 
 <!-- ============ NAV ============ -->
+<div class="grain" aria-hidden="true"></div>
+
 <nav id="nav">
   <div class="nav-inner">
     <div class="nav-side nav-left">
@@ -1585,38 +1671,30 @@
   </div>
 </div>
 
-<!-- ============ HERO ============ -->
-<header class="hero">
-  <div class="hero-block">
-    <img class="hero-photo" src="photographs/hero.jpg" alt="The Sunday Cookie — cookies and coffee on warm linen, Sunday morning" loading="eager" fetchpriority="high" decoding="async">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Köln · Est. 2026</div>
-      <h1>A cookie, every Sunday.</h1>
-      <p>Baked by hand in Köln, every Friday. One recipe, twelve years in the making.</p>
-      <a href="#shop" class="btn-shop">
-        <svg class="btn-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g class="sun-rays" stroke="#3D2A18" stroke-width="3" stroke-linecap="round" fill="none">
-            <line x1="32" y1="3" x2="32" y2="11"/>
-            <line x1="32" y1="53" x2="32" y2="61"/>
-            <line x1="3" y1="32" x2="11" y2="32"/>
-            <line x1="53" y1="32" x2="61" y2="32"/>
-            <line x1="11" y1="11" x2="16" y2="16"/>
-            <line x1="48" y1="48" x2="53" y2="53"/>
-            <line x1="53" y1="11" x2="48" y2="16"/>
-            <line x1="16" y1="48" x2="11" y2="53"/>
-          </g>
-          <circle class="cookie-body" cx="32" cy="32" r="15" fill="#A56B3A" stroke="#3D2A18" stroke-width="2"/>
-          <circle cx="27" cy="29" r="1.8" fill="#3D2A18"/>
-          <circle cx="36" cy="29" r="1.5" fill="#3D2A18"/>
-          <circle cx="29" cy="35" r="1.7" fill="#3D2A18"/>
-          <circle cx="37" cy="35" r="1.3" fill="#3D2A18"/>
-        </svg>
-        <span>Shop now</span>
-      </a>
-    </div>
+<!-- ============ HERO (editorial lockup) ============ -->
+<header class="eh-hero" id="top">
+  <div class="eh-ghost"><img src="photographs/cookie-closeup.jpg" alt="" aria-hidden="true" fetchpriority="low"></div>
+
+  <div class="eh-eyebrow eh-reveal d1">Baked by hand, every Sunday</div>
+
+  <h1 class="eh-lockup" aria-label="The Sunday Cookie">
+    <span class="eh-the eh-reveal d2">the</span>
+    <span class="eh-sunday eh-reveal d3">Sunday</span>
+    <span class="eh-cookie eh-reveal d4">cookie</span>
+  </h1>
+
+  <div class="eh-sub">
+    <div class="eh-tag eh-reveal d5">Brown butter &middot; Dark Belgian chocolate &middot; Maldon salt</div>
+    <a href="#shop" class="eh-cta eh-reveal d5">Order this Sunday <span class="arr" aria-hidden="true">&rarr;</span></a>
   </div>
 </header>
+
+<div class="eh-marquee" aria-hidden="true">
+  <div class="eh-marquee-track">
+    <span>Brown butter</span><span>Deep brown sugar</span><span>Dark Belgian chocolate, 70%</span><span>Maldon sea salt</span><span>24-hour cold rest</span><span>120g, baked by hand</span>
+    <span>Brown butter</span><span>Deep brown sugar</span><span>Dark Belgian chocolate, 70%</span><span>Maldon sea salt</span><span>24-hour cold rest</span><span>120g, baked by hand</span>
+  </div>
+</div>
 
 <!-- ============ PRODUCT GRID ============ -->
 <section class="section product-section" id="shop">
@@ -1825,6 +1903,18 @@
 </footer>
 
 <script>
+  // === Editorial hero reveal (blur-rise on load) ===
+  const ehHero = document.querySelector('.eh-hero');
+  if (ehHero) requestAnimationFrame(() => requestAnimationFrame(() => ehHero.classList.add('in')));
+  // Subtle cursor parallax on the lockup (fine pointers only, respects reduced-motion)
+  const ehLockup = document.querySelector('.eh-lockup');
+  if (ehLockup && matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / innerWidth - 0.5), y = (e.clientY / innerHeight - 0.5);
+      ehLockup.style.transform = `translate(${x * 14}px, ${y * 9}px)`;
+    }, { passive: true });
+  }
+
   // === Scroll-triggered fade-ups ===
   const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
